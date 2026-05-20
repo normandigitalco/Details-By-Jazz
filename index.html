@@ -97,7 +97,7 @@
     .mob-menu .mob-book:hover{background:var(--blue2)!important}
 
     /* ══════════ HERO SLIDER ══════════ */
-    .hero{position:relative;height:82svh;min-height:560px;overflow:hidden;margin-top:var(--nav-h);background:#0a0a0a;contain:layout paint;max-height:calc(100svh - var(--nav-h))}
+    .hero{position:relative;height:calc(100dvh - var(--nav-h));min-height:400px;overflow:hidden;margin-top:var(--nav-h);background:#0a0a0a;contain:layout paint}
     .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;will-change:opacity}
     .slide.active{opacity:1}
     #s0{opacity:1;transition:none}
@@ -290,7 +290,7 @@
 
     /* ══════════ RESPONSIVE ══════════ */
     @media(min-width:881px){
-      .hero{height:calc(100svh - var(--nav-h));max-height:calc(100svh - var(--nav-h))}
+      .hero{height:calc(100dvh - var(--nav-h))}
     }
         @media(max-width:880px){
       footer > div{padding-left:20px!important;padding-right:20px!important} footer > div:first-child{grid-template-columns:1fr!important;gap:28px!important}
@@ -299,7 +299,7 @@
       .nav-book{display:none}
       .ham{display:flex}
       .hero-content{padding:0 24px 56px}
-      .hero{height:calc(100svh - var(--nav-h));max-height:calc(100svh - var(--nav-h));min-height:unset}
+      .hero{height:calc(100dvh - var(--nav-h));min-height:unset}
       .hero-title{font-size:clamp(36px,11vw,72px)}
       .hero-dots{right:24px}
       .strip{grid-template-columns:1fr 1fr;height:auto}.pillar{height:200px}
@@ -1228,42 +1228,7 @@
   }
   window.addEventListener('scroll', updateFloat, {passive:true});
 
-  let _currentPage = null;
-  function showPage(id, fromPop) {
-    if(!PAGES.includes(id)) id = 'home';
-    PAGES.forEach(p => {
-      const el = document.getElementById(p);
-      el.classList.remove('active','visible');
-    });
-    const t = document.getElementById(id);
-    t.classList.add('active');
-    window.scrollTo(0,0);
-
-    if(fromPop){
-      // iOS Safari needs a genuine paint cycle after display:block before opacity works
-      // Using double rAF + setTimeout ensures the element is fully rendered before we show it
-      void t.offsetHeight; // force layout
-      setTimeout(function(){
-        void t.offsetHeight;
-        t.classList.add('visible');
-      }, 16);
-    } else {
-      // Normal navigation — smooth fade in
-      requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('visible')));
-    }
-
-    if(!fromPop){
-      try {
-        if(id !== _currentPage) history.pushState({page:id},'','#'+id);
-        else history.replaceState({page:id},'','#'+id);
-      } catch(e) {}
-    }
-    _currentPage = id;
-    if(id==='gallery') buildGal();
-    updateFloat();
-  }
-
-  /* SLIDER — declared before init IIFE so resetTimer() is defined when called */
+  /* SLIDER — declared first so resetTimer() is available everywhere */
   const SLIDES = ['s0','s1','s2','s3'];
   let cur = 0, sliderTimer;
 
@@ -1290,14 +1255,68 @@
     sliderTimer = setInterval(()=>goSlide(cur+1), 5000);
   }
 
+  /* PAGE NAVIGATION — proven pattern, same frame-waiting approach as Revere */
+  let _currentPage = null;
+  let _busy = false;
+
+  function showPage(id, fromPop) {
+    if(!PAGES.includes(id)) id = 'home';
+    if(_busy) return;
+    _busy = true;
+
+    PAGES.forEach(p => {
+      const el = document.getElementById(p);
+      el.classList.remove('active', 'visible');
+    });
+
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
+    const t = document.getElementById(id);
+    t.classList.add('active');
+
+    if(!fromPop) {
+      try {
+        if(id !== _currentPage) history.pushState({page:id}, '', '#'+id);
+        else history.replaceState({page:id}, '', '#'+id);
+      } catch(e) {}
+    }
+
+    _currentPage = id;
+    if(id === 'gallery') buildGal();
+
+    // Wait enough frames for iOS/Android to fully paint display:block before fading in.
+    // 3 frames is proven to work; gallery gets 8 (more content to lay out).
+    const frames = id === 'gallery' ? 8 : 3;
+    let f = 0;
+    function waitFrames() {
+      if(++f < frames) requestAnimationFrame(waitFrames);
+      else { t.classList.add('visible'); _busy = false; updateFloat(); }
+    }
+    requestAnimationFrame(waitFrames);
+  }
+
+  /* INIT — show home instantly without any animation on first load */
   (function(){
-    const h = location.hash.replace('#','');
+    const h = location.hash.replace('#', '');
     const startPage = PAGES.includes(h) ? h : 'home';
-    try { history.replaceState({page:startPage},'','#'+startPage); } catch(e) {}
-    showPage(startPage, true);
-    _currentPage = startPage;
-    if(startPage === 'home') resetTimer();
+    try { history.replaceState({page:startPage}, '', '#'+startPage); } catch(e) {}
+
+    // Show home immediately (no fade) then navigate if needed
+    document.getElementById('home').classList.add('active', 'visible');
+    _currentPage = 'home';
+    resetTimer();
+
+    if(startPage !== 'home') showPage(startPage);
   })();
+
+  // Back/forward browser buttons
+  window.addEventListener('popstate', function(e) {
+    const id = (e.state && e.state.page) || location.hash.replace('#','') || 'home';
+    _busy = false; // reset busy so popstate always works
+    showPage(PAGES.includes(id) ? id : 'home', true);
+  });
 
   function toggleMenu(){
     document.getElementById('ham').classList.toggle('open');
@@ -1479,12 +1498,7 @@
 
 
 
-  // Handle browser back/forward buttons
-  window.addEventListener('popstate', function(e){
-    const id = (e.state && e.state.page) || location.hash.replace('#','') || 'home';
-    if(PAGES.includes(id)) showPage(id, true);
-    else showPage('home', true);
-  });
+
 </script>
 </body>
 </html>
