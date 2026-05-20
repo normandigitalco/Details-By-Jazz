@@ -55,7 +55,7 @@
       --body:'Barlow',sans-serif;
     }
     html{scroll-behavior:auto;overflow-x:hidden}
-    body{background:var(--bg);color:var(--text);font-family:var(--body);font-weight:300;line-height:1.6;overflow-x:hidden}
+    body{background:var(--bg);color:var(--text);font-family:var(--body);font-weight:300;line-height:1.6;overflow-x:hidden;overflow-y:hidden}
     button,a,[onclick]{touch-action:manipulation}
     ::selection{background:var(--blue);color:#fff}
     ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px}
@@ -97,7 +97,7 @@
     .mob-menu .mob-book:hover{background:var(--blue2)!important}
 
     /* ══════════ HERO SLIDER ══════════ */
-    .hero{position:relative;height:calc(100dvh - var(--nav-h));min-height:400px;overflow:hidden;margin-top:var(--nav-h);background:#0a0a0a;contain:layout paint}
+    .hero{position:relative;height:82vh;min-height:560px;overflow:hidden;margin-top:var(--nav-h);background:#0a0a0a;contain:layout paint}
     .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;will-change:opacity}
     .slide.active{opacity:1}
     #s0{opacity:1;transition:none}
@@ -290,7 +290,7 @@
 
     /* ══════════ RESPONSIVE ══════════ */
     @media(min-width:881px){
-      .hero{height:calc(100dvh - var(--nav-h))}
+      .hero{height:91vh}
     }
         @media(max-width:880px){
       footer > div{padding-left:20px!important;padding-right:20px!important} footer > div:first-child{grid-template-columns:1fr!important;gap:28px!important}
@@ -299,7 +299,7 @@
       .nav-book{display:none}
       .ham{display:flex}
       .hero-content{padding:0 24px 56px}
-      .hero{height:calc(100dvh - var(--nav-h));min-height:unset}
+      .hero{height:92vh;min-height:560px}
       .hero-title{font-size:clamp(36px,11vw,72px)}
       .hero-dots{right:24px}
       .strip{grid-template-columns:1fr 1fr;height:auto}.pillar{height:200px}
@@ -1255,20 +1255,19 @@
     sliderTimer = setInterval(()=>goSlide(cur+1), 5000);
   }
 
-  /* PAGE NAVIGATION — proven pattern, same frame-waiting approach as Revere */
+  /* PAGE NAVIGATION */
   let _currentPage = null;
-  let _busy = false;
 
   function showPage(id, fromPop) {
     if(!PAGES.includes(id)) id = 'home';
-    if(_busy) return;
-    _busy = true;
 
     PAGES.forEach(p => {
       const el = document.getElementById(p);
       el.classList.remove('active', 'visible');
     });
 
+    // Lock scroll while switching so nothing bleeds through
+    document.body.style.overflow = 'hidden';
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -1286,27 +1285,34 @@
     _currentPage = id;
     if(id === 'gallery') buildGal();
 
-    // Wait enough frames for iOS/Android to fully paint display:block before fading in.
-    // 3 frames is proven to work; gallery gets 8 (more content to lay out).
+    // Wait frames for browser to fully paint display:block before fading in
     const frames = id === 'gallery' ? 8 : 3;
     let f = 0;
     function waitFrames() {
-      if(++f < frames) requestAnimationFrame(waitFrames);
-      else { t.classList.add('visible'); _busy = false; updateFloat(); }
+      if(++f < frames) {
+        requestAnimationFrame(waitFrames);
+      } else {
+        t.classList.add('visible');
+        // Unlock scroll AFTER page is visible
+        document.body.style.overflow = '';
+        updateFloat();
+      }
     }
     requestAnimationFrame(waitFrames);
   }
 
-  /* INIT — show home instantly without any animation on first load */
+  /* INIT — show home instantly, no animation, no peek */
   (function(){
     const h = location.hash.replace('#', '');
     const startPage = PAGES.includes(h) ? h : 'home';
     try { history.replaceState({page:startPage}, '', '#'+startPage); } catch(e) {}
 
-    // Show home immediately (no fade) then navigate if needed
     document.getElementById('home').classList.add('active', 'visible');
     _currentPage = 'home';
     resetTimer();
+
+    // Unlock scroll (body starts hidden from CSS)
+    document.body.style.overflow = '';
 
     if(startPage !== 'home') showPage(startPage);
   })();
@@ -1314,7 +1320,6 @@
   // Back/forward browser buttons
   window.addEventListener('popstate', function(e) {
     const id = (e.state && e.state.page) || location.hash.replace('#','') || 'home';
-    _busy = false; // reset busy so popstate always works
     showPage(PAGES.includes(id) ? id : 'home', true);
   });
 
