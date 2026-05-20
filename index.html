@@ -159,7 +159,7 @@
 
     /* ══════════ SERVICES ══════════ */
     .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
-    .svc-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:36px 32px;position:relative;transition:background .25s,border-color .25s}
+    .svc-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:36px 32px;position:relative;transition:background .25s,border-color .25s;cursor:pointer}
     .svc-card:hover{background:var(--panel2);border-color:var(--line2)}
     .svc-card-num{font-family:var(--raleway);font-size:11px;font-weight:800;letter-spacing:3px;color:var(--blue);margin-bottom:20px;display:block}
     .svc-card h3{font-family:var(--raleway);font-weight:800;font-size:1.25rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;color:var(--text)}
@@ -445,7 +445,7 @@
         <a onclick="showPage('services')" class="btn-dark">See Full Pricing</a>
       </div>
       <div class="services-grid">
-        <div class="svc-card">
+        <div class="svc-card" onclick="showPage('contact')">
           <h3>Basic Inside &amp; Out</h3>
           <p>A thorough maintenance detail to keep your vehicle consistently clean inside and out.</p>
           <ul>
@@ -458,7 +458,7 @@
           <div class="svc-price">$150&ndash;$200 <span>starting price</span></div>
           <a onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
-        <div class="svc-card featured-svc">
+        <div class="svc-card featured-svc" onclick="showPage('contact')">
           <div class="svc-badge">Most Popular</div>
           <h3>Premium Inside &amp; Out</h3>
           <p>A deeper reset for vehicles that need more thorough attention to every surface.</p>
@@ -472,7 +472,7 @@
           <div class="svc-price">$225&ndash;$300 <span>starting price</span></div>
           <a onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
-        <div class="svc-card">
+        <div class="svc-card" onclick="showPage('contact')">
           <h3>Monthly Maintenance</h3>
           <p>Recurring detailing for clients who want their vehicle kept consistently clean.</p>
           <ul>
@@ -639,7 +639,7 @@
       </div>
 
       <div class="services-grid">
-        <div class="svc-card">
+        <div class="svc-card" onclick="showPage('contact')">
           <h3>Basic Inside &amp; Out</h3>
           <p>A solid maintenance detail for vehicles that need a clean refresh inside and out.</p>
           <ul>
@@ -652,7 +652,7 @@
           </ul>
           <div class="svc-price">$150&ndash;$200+ <span>based on size &amp; condition</span></div>
         </div>
-        <div class="svc-card featured-svc">
+        <div class="svc-card featured-svc" onclick="showPage('contact')">
           <div class="svc-badge">Most Popular</div>
           <h3>Premium Inside &amp; Out</h3>
           <p>A deeper detail for vehicles that need more thorough interior and exterior care.</p>
@@ -666,7 +666,7 @@
           </ul>
           <div class="svc-price">$225&ndash;$300+ <span>based on size &amp; condition</span></div>
         </div>
-        <div class="svc-card">
+        <div class="svc-card" onclick="showPage('contact')">
           <h3>Monthly Maintenance</h3>
           <p>Recurring mobile detailing for clients who want their vehicle consistently maintained.</p>
           <ul>
