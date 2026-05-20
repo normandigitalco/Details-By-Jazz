@@ -56,7 +56,7 @@
     }
     html{scroll-behavior:auto}
     body{background:var(--bg);color:var(--text);font-family:var(--body);font-weight:300;line-height:1.6;overflow-x:hidden}
-    a,button,[onclick]{touch-action:manipulation}
+    *{touch-action:manipulation}
     ::selection{background:var(--blue);color:#fff}
     ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px}
     a{color:inherit;text-decoration:none}
@@ -333,12 +333,12 @@
     <div class="nav-brand-sub">Mobile Detailing &middot; Oahu</div>
   </div>
   <div class="nav-links">
-    <a onclick="showPage('home')">Home</a>
-    <a onclick="showPage('services')">Services</a>
-    <a onclick="showPage('tesla')">Tesla Detailing</a>
-    <a onclick="showPage('gallery')">Gallery</a>
-    <a onclick="showPage('faq')">FAQ</a>
-    <a onclick="showPage('contact')">Contact</a>
+    <a href="javascript:void(0)" onclick="showPage('home')">Home</a>
+    <a href="javascript:void(0)" onclick="showPage('services')">Services</a>
+    <a href="javascript:void(0)" onclick="showPage('tesla')">Tesla Detailing</a>
+    <a href="javascript:void(0)" onclick="showPage('gallery')">Gallery</a>
+    <a href="javascript:void(0)" onclick="showPage('faq')">FAQ</a>
+    <a href="javascript:void(0)" onclick="showPage('contact')">Contact</a>
   </div>
   <button class="nav-book" onclick="showPage('contact')">Book Now</button>
   <button class="ham" id="ham" onclick="toggleMenu()">
@@ -347,13 +347,13 @@
 </nav>
 
 <div class="mob-menu" id="mobMenu">
-  <a onclick="showPage('home');toggleMenu()">Home</a>
-  <a onclick="showPage('services');toggleMenu()">Services</a>
-  <a onclick="showPage('tesla');toggleMenu()">Tesla Detailing</a>
-  <a onclick="showPage('gallery');toggleMenu()">Gallery</a>
-  <a onclick="showPage('faq');toggleMenu()">FAQ</a>
-  <a onclick="showPage('contact');toggleMenu()">Contact</a>
-  <a onclick="showPage('contact');toggleMenu()" class="mob-book">Book Now</a>
+  <a href="javascript:void(0)" onclick="showPage('home');toggleMenu()">Home</a>
+  <a href="javascript:void(0)" onclick="showPage('services');toggleMenu()">Services</a>
+  <a href="javascript:void(0)" onclick="showPage('tesla');toggleMenu()">Tesla Detailing</a>
+  <a href="javascript:void(0)" onclick="showPage('gallery');toggleMenu()">Gallery</a>
+  <a href="javascript:void(0)" onclick="showPage('faq');toggleMenu()">FAQ</a>
+  <a href="javascript:void(0)" onclick="showPage('contact');toggleMenu()">Contact</a>
+  <a href="javascript:void(0)" onclick="showPage('contact');toggleMenu()" class="mob-book">Book Now</a>
 </div>
 
 <a href="tel:8083843052" class="float-btn" id="floatBtn"><span style="font-family:var(--cond);font-weight:700;letter-spacing:2px">Call 808-384-3052</span></a>
@@ -391,7 +391,7 @@
       <p class="hero-sub">Professional mobile detailing &mdash; we come to you</p>
       <div class="hero-btns">
         <a href="sms:8083843052" class="btn-blue">Text for Availability</a>
-        <a onclick="showPage('services')" class="btn-ghost">View Services</a>
+        <a href="javascript:void(0)" onclick="showPage('services')" class="btn-ghost">View Services</a>
       </div>
     </div>
 
@@ -442,7 +442,7 @@
           <div class="eyebrow-tag"><div class="eyebrow-tag-bar"></div><span>What We Offer</span></div>
           <h2 class="section-heading" style="margin-bottom:0">Our Services</h2>
         </div>
-        <a onclick="showPage('services')" class="btn-dark">See Full Pricing</a>
+        <a href="javascript:void(0)" onclick="showPage('services')" class="btn-dark">See Full Pricing</a>
       </div>
       <div class="services-grid">
         <div class="svc-card" onclick="showPage('contact')">
@@ -456,7 +456,7 @@
             <li>Paint sealant</li>
           </ul>
           <div class="svc-price">$150&ndash;$200 <span>starting price</span></div>
-          <a onclick="showPage('contact')" class="svc-book">Book This</a>
+          <a href="javascript:void(0)" onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
         <div class="svc-card featured-svc" onclick="showPage('contact')">
           <div class="svc-badge">Most Popular</div>
@@ -470,7 +470,7 @@
             <li>Ceramic sealant</li>
           </ul>
           <div class="svc-price">$225&ndash;$300 <span>starting price</span></div>
-          <a onclick="showPage('contact')" class="svc-book">Book This</a>
+          <a href="javascript:void(0)" onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
         <div class="svc-card" onclick="showPage('contact')">
           <h3>Monthly Maintenance</h3>
@@ -482,7 +482,7 @@
             <li>Priority scheduling</li>
           </ul>
           <div class="svc-price">Monthly <span>contact for pricing</span></div>
-          <a onclick="showPage('contact')" class="svc-book">Book This</a>
+          <a href="javascript:void(0)" onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
       </div>
     </div>
@@ -527,7 +527,7 @@
           <div class="eyebrow-tag"><div class="eyebrow-tag-bar"></div><span>Our Work</span></div>
           <h2 class="section-heading">Recent Details</h2>
         </div>
-        <a onclick="showPage('gallery')" class="btn-dark">View All</a>
+        <a href="javascript:void(0)" onclick="showPage('gallery')" class="btn-dark">View All</a>
       </div>
       <div class="gallery-grid" id="previewGal"></div>
     </div>
@@ -584,19 +584,19 @@
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Services</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Basic Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Premium Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Monthly Maintenance</a>
-          <a onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Tesla Detailing</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Basic Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Premium Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Monthly Maintenance</a>
+          <a href="javascript:void(0)" onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .2s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Tesla Detailing</a>
         </div>
       </div>
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Areas</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Kapolei</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Ewa Beach</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Honolulu</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Waikiki &amp; more</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Kapolei</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Ewa Beach</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Honolulu</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">Waikiki &amp; more</a>
         </div>
       </div>
       <div>
@@ -708,19 +708,19 @@
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Services</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Basic Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Premium Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Monthly Maintenance</a>
-          <a onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Tesla Detailing</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Basic Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Premium Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Monthly Maintenance</a>
+          <a href="javascript:void(0)" onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Tesla Detailing</a>
         </div>
       </div>
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Areas</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Kapolei</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Ewa Beach</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Honolulu</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Waikiki &amp; more</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Kapolei</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Ewa Beach</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Honolulu</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Waikiki &amp; more</a>
         </div>
       </div>
       <div>
@@ -792,19 +792,19 @@
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Services</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Basic Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Premium Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Monthly Maintenance</a>
-          <a onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Tesla Detailing</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Basic Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Premium Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Monthly Maintenance</a>
+          <a href="javascript:void(0)" onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Tesla Detailing</a>
         </div>
       </div>
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Areas</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Kapolei</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Ewa Beach</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Honolulu</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Waikiki &amp; more</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Kapolei</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Ewa Beach</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Honolulu</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Waikiki &amp; more</a>
         </div>
       </div>
       <div>
@@ -881,7 +881,7 @@
     <p>Send your Tesla model, location, and desired service for pricing</p>
     <div class="cta-btns">
       <a href="sms:8083843052" class="btn-white" style="font-family:var(--cond);font-weight:700;letter-spacing:2px">Text 808-384-3052</a>
-      <a onclick="showPage('services')" class="btn-ghost-white">View Services</a>
+      <a href="javascript:void(0)" onclick="showPage('services')" class="btn-ghost-white">View Services</a>
     </div>
   </div>
   <footer>
@@ -895,19 +895,19 @@
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Services</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Basic Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Premium Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Monthly Maintenance</a>
-          <a onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Tesla Detailing</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Basic Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Premium Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Monthly Maintenance</a>
+          <a href="javascript:void(0)" onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Tesla Detailing</a>
         </div>
       </div>
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Areas</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Kapolei</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Ewa Beach</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Honolulu</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Waikiki &amp; more</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Kapolei</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Ewa Beach</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Honolulu</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Waikiki &amp; more</a>
         </div>
       </div>
       <div>
@@ -961,19 +961,19 @@
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Services</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Basic Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Premium Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Monthly Maintenance</a>
-          <a onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Tesla Detailing</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Basic Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Premium Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Monthly Maintenance</a>
+          <a href="javascript:void(0)" onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Tesla Detailing</a>
         </div>
       </div>
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Areas</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Kapolei</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Ewa Beach</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Honolulu</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Waikiki &amp; more</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Kapolei</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Ewa Beach</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Honolulu</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Waikiki &amp; more</a>
         </div>
       </div>
       <div>
@@ -1051,7 +1051,7 @@
     <p>Text us directly and we'll get back to you same day</p>
     <div class="cta-btns">
       <a href="sms:8083843052" class="btn-white" style="font-family:var(--cond);font-weight:700;letter-spacing:2px">Text 808-384-3052</a>
-      <a onclick="showPage('contact')" class="btn-ghost-white">Send a Message</a>
+      <a href="javascript:void(0)" onclick="showPage('contact')" class="btn-ghost-white">Send a Message</a>
     </div>
   </div>
   <footer>
@@ -1065,19 +1065,19 @@
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Services</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Basic Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Premium Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Monthly Maintenance</a>
-          <a onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Tesla Detailing</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Basic Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Premium Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Monthly Maintenance</a>
+          <a href="javascript:void(0)" onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Tesla Detailing</a>
         </div>
       </div>
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Areas</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Kapolei</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Ewa Beach</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Honolulu</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Waikiki &amp; more</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Kapolei</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Ewa Beach</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Honolulu</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Waikiki &amp; more</a>
         </div>
       </div>
       <div>
@@ -1167,19 +1167,19 @@
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Services</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Basic Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Premium Inside &amp; Out</a>
-          <a onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Monthly Maintenance</a>
-          <a onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Tesla Detailing</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Basic Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Premium Inside &amp; Out</a>
+          <a href="javascript:void(0)" onclick="showPage('services')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Monthly Maintenance</a>
+          <a href="javascript:void(0)" onclick="showPage('tesla')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Tesla Detailing</a>
         </div>
       </div>
       <div>
         <div style="font-family:var(--raleway);font-weight:800;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--text);margin-bottom:16px">Areas</div>
         <div style="display:flex;flex-direction:column;gap:10px">
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Kapolei</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Ewa Beach</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Honolulu</a>
-          <a onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Waikiki &amp; more</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Kapolei</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Ewa Beach</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Honolulu</a>
+          <a href="javascript:void(0)" onclick="showPage('areas')" style="font-family:var(--cond);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer">Waikiki &amp; more</a>
         </div>
       </div>
       <div>
@@ -1212,7 +1212,7 @@
 <script>
   const PAGES = ['home','services','areas','tesla','faq','gallery','contact'];
 
-  function showPage(id) {
+  function showPage(id, fromPop) {
     PAGES.forEach(p => {
       const el = document.getElementById(p);
       el.classList.remove('active','visible');
@@ -1221,7 +1221,7 @@
     t.classList.add('active');
     window.scrollTo(0,0);
     requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('visible')));
-    try { history.pushState(null,'','#'+id); } catch(e) {}
+    if(!fromPop){ try { history.pushState({page:id},'','#'+id); } catch(e) {} }
     if(id==='gallery') buildGal();
     updateFloat();
   }
@@ -1446,10 +1446,10 @@
   window.addEventListener('scroll', updateFloat, {passive:true});
 
   // Handle browser back/forward buttons
-  window.addEventListener('popstate', function(){
-    const hash = location.hash.replace('#','');
-    if(PAGES.includes(hash)) showPage(hash);
-    else showPage('home');
+  window.addEventListener('popstate', function(e){
+    const id = (e.state && e.state.page) || location.hash.replace('#','') || 'home';
+    if(PAGES.includes(id)) showPage(id, true);
+    else showPage('home', true);
   });
 </script>
 </body>
