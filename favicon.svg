@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="7" fill="#05070b"/>
+  <rect x="1" y="1" width="30" height="30" rx="6.5" fill="none" stroke="#1b98e8" stroke-width="1.2" opacity="0.6"/>
+  <text x="16" y="22" font-family="Arial Black,sans-serif" font-weight="900" font-size="15" fill="#1b98e8" letter-spacing="0" text-anchor="middle" dominant-baseline="auto">DJ</text>
+</svg>
