@@ -75,7 +75,7 @@
     .nav-brand{cursor:pointer;display:flex;flex-direction:column;line-height:1;gap:5px}
     .nav-brand-top{font-family:var(--raleway);font-weight:900;font-size:20px;letter-spacing:4px;color:var(--text);text-transform:uppercase}
     .nav-brand-sub{font-family:var(--cond);font-weight:500;font-size:10px;letter-spacing:5px;color:var(--blue);text-transform:uppercase}
-    .nav-links{display:flex;align-items:center;gap:36px}
+    .nav-links{display:flex;align-items:center;gap:36px;position:absolute;left:50%;transform:translateX(-50%)}
     .nav-links a{font-family:var(--raleway);font-weight:600;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);transition:color .2s;cursor:pointer;position:relative;padding-bottom:3px}
     .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--blue);transition:width .3s}
     .nav-links a:hover{color:var(--text)}
@@ -117,6 +117,13 @@
     .btn-dark:hover{border-color:var(--blue);color:var(--blue)}
 
     .hero-dots{position:absolute;bottom:32px;right:72px;z-index:10;display:flex;gap:8px;align-items:center}
+    /* Desktop: static hero — hide all but first slide, hide controls */
+    @media(min-width:881px){
+      .slide:not(#s0){display:none!important}
+      #s0{opacity:1!important;transition:none!important}
+      .hero-dots{display:none!important}
+      .h-arr{display:none!important}
+    }
     .dot{width:26px;height:1.5px;background:rgba(255,255,255,0.2);cursor:pointer;transition:background .3s,width .3s}
     .dot.on{background:var(--blue);width:48px}
     .h-arr{position:absolute;top:50%;z-index:20;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.1);color:#fff;width:48px;height:48px;cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center;transition:background .2s}
@@ -170,6 +177,8 @@
     .svc-card.featured-svc ul li:first-child{border-color:var(--line2)}
     .svc-card.featured-svc .svc-price{color:var(--blue)}
     .svc-card.featured-svc .svc-price span{color:var(--muted)}
+    .svc-book{display:inline-block;margin-top:16px;font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff;background:var(--blue);border:none;padding:10px 22px;border-radius:999px;cursor:pointer;transition:opacity .2s}
+    .svc-book:hover{opacity:0.82}
     .svc-badge{display:inline-block;font-family:var(--raleway);font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;background:var(--blue);color:#fff;margin-bottom:20px;border-radius:999px}
 
     /* ══════════ WHY ══════════ */
@@ -199,6 +208,7 @@
     .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:52px}
     .gal-item{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1;border-radius:14px}
     .gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;display:block}
+    .gal-item img[src*="porsche"]{object-position:center 77%}
     .gal-ov{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .3s;display:flex;align-items:center;justify-content:center}
     .gal-ov span{font-family:var(--cond);font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#fff;opacity:0;transition:opacity .3s}
     .gal-item:hover img{transform:scale(1.06)}
@@ -271,10 +281,14 @@
     .float-btn:hover{background:var(--blue2)}
 
     /* ══════════ RESPONSIVE ══════════ */
-    @media(max-width:880px){
+    @media(min-width:881px){
+      .hero{height:91svh}
+    }
+        @media(max-width:880px){
       footer > div{padding-left:20px!important;padding-right:20px!important} footer > div:first-child{grid-template-columns:1fr!important;gap:28px!important}
       nav{padding:0 20px}
       .nav-links{display:none}
+      .nav-book{display:none}
       .ham{display:flex}
       .hero-content{padding:0 24px 56px}
       .hero-title{font-size:clamp(36px,11vw,72px)}
@@ -282,6 +296,8 @@
       .strip{grid-template-columns:1fr 1fr;height:auto}.pillar{height:200px}
       
       .section{padding:64px 20px}
+      .why-grid{gap:10px}
+      .why-card{padding:22px 20px}
       .services-grid{grid-template-columns:1fr}
       .why-grid{grid-template-columns:1fr}
       .areas-grid{grid-template-columns:repeat(2,1fr)}
@@ -319,8 +335,9 @@
     <a onclick="showPage('tesla')">Tesla Detailing</a>
     <a onclick="showPage('gallery')">Gallery</a>
     <a onclick="showPage('faq')">FAQ</a>
-    <button class="nav-book" onclick="showPage('contact')">Book Now</button>
+    <a onclick="showPage('contact')">Contact</a>
   </div>
+  <button class="nav-book" onclick="showPage('contact')">Book Now</button>
   <button class="ham" id="ham" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
@@ -332,8 +349,8 @@
   <a onclick="showPage('tesla');toggleMenu()">Tesla Detailing</a>
   <a onclick="showPage('gallery');toggleMenu()">Gallery</a>
   <a onclick="showPage('faq');toggleMenu()">FAQ</a>
+  <a onclick="showPage('contact');toggleMenu()">Contact</a>
   <a onclick="showPage('contact');toggleMenu()" class="mob-book">Book Now</a>
-  <a href="tel:8083843052" style="font-family:var(--cond);font-size:16px!important;font-weight:700;letter-spacing:3px;color:var(--blue)">808-384-3052</a>
 </div>
 
 <a href="tel:8083843052" class="float-btn" id="floatBtn"><span style="font-family:var(--cond);font-weight:700;letter-spacing:2px">Call 808-384-3052</span></a>
@@ -356,7 +373,7 @@
       <img src="Images/655056214_18074318903452042_2135691445387847298_n.jpg" alt="Teal Jeep Wrangler detail Oahu" style="object-position:center 45%"/>
     </div>
     <div class="slide" id="s3">
-      <img src="Images/porsche.jpeg" alt="Black Porsche Taycan detail Oahu" style="object-position:center 72%"/>
+      <img src="Images/porsche.jpeg" alt="Black Porsche Taycan detail Oahu" style="object-position:center 77%"/>
     </div>
 
     <button class="h-arr pv" onclick="moveSlide(-1)">&#8249;</button>
@@ -365,7 +382,7 @@
     <div class="hero-content">
       <div class="hero-eyebrow">
         <div class="hero-eyebrow-bar"></div>
-        <span>Mobile Detailing &middot; Oahu, Hawaii</span>
+        <span>Premium Detailing &middot; Oahu, Hawaii</span>
       </div>
       <h1 class="hero-title">Details<br>By Jazz</h1>
       <p class="hero-sub">Professional mobile detailing &mdash; we come to you</p>
@@ -389,7 +406,7 @@
       </div>
     </div>
     <div class="pillar">
-      <div class="pillar-bg"><img src="Images/655021494_18121980727612905_4345518545123185838_n.jpg" alt="Hand wash Oahu" loading="lazy"/></div>
+      <div class="pillar-bg"><img src="Images/655021494_18121980727612905_4345518545123185838_n.jpg" alt="Foam treatment detailing Oahu" loading="lazy"/></div>
       <div class="pillar-overlay"></div>
       <div class="pillar-inner">
         <div class="pillar-tag">Hand Wash</div>
@@ -436,6 +453,7 @@
             <li>Paint sealant</li>
           </ul>
           <div class="svc-price">$150&ndash;$200 <span>starting price</span></div>
+          <a onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
         <div class="svc-card featured-svc">
           <div class="svc-badge">Most Popular</div>
@@ -449,6 +467,7 @@
             <li>Ceramic sealant</li>
           </ul>
           <div class="svc-price">$225&ndash;$300 <span>starting price</span></div>
+          <a onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
         <div class="svc-card">
           <h3>Monthly Maintenance</h3>
@@ -460,6 +479,7 @@
             <li>Priority scheduling</li>
           </ul>
           <div class="svc-price">Monthly <span>contact for pricing</span></div>
+          <a onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
       </div>
     </div>
@@ -604,6 +624,17 @@
       <div class="eyebrow-tag"><div class="eyebrow-tag-bar"></div><span>What We Offer</span></div>
       <h2 class="section-heading">Detailing Services</h2>
       <p class="section-sub">All pricing depends on vehicle size, current condition, and location. Text for a quick quote.</p>
+
+      <!-- Services photo banner -->
+      <div style="margin-top:40px;margin-bottom:40px;position:relative;height:300px;overflow:hidden;border-radius:18px">
+        <img src="Images/porsche.jpeg" alt="Details by Jazz mobile detailing Oahu" style="width:100%;height:100%;object-fit:cover;object-position:center 77%;filter:brightness(0.7)"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,7,11,0.88) 0%,rgba(5,7,11,0.2) 60%,transparent 100%);border-radius:18px"></div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:48px">
+          <div style="font-family:var(--cond);font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--blue);margin-bottom:12px">Mobile &mdash; We Come to You</div>
+          <div style="font-family:var(--raleway);font-weight:900;font-size:clamp(1.8rem,3.5vw,3rem);text-transform:uppercase;letter-spacing:-1px;color:#fff;line-height:1">Cars &middot; SUVs<br>Trucks &middot; RVs</div>
+        </div>
+      </div>
+
       <div class="services-grid">
         <div class="svc-card">
           <h3>Basic Inside &amp; Out</h3>
@@ -967,7 +998,7 @@
 <div class="page" id="faq">
   <div style="padding-top:var(--nav-h)">
   <div style="position:relative;height:280px;overflow:hidden">
-    <img src="Images/porsche.jpeg" alt="Mobile detailing Oahu FAQ" style="width:100%;height:100%;object-fit:cover;object-position:center 60%;filter:brightness(0.35)"/>
+    <img src="Images/porsche.jpeg" alt="Mobile detailing Oahu FAQ" style="width:100%;height:100%;object-fit:cover;object-position:center 65%;filter:brightness(0.35)"/>
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 56px">
       <div class="eyebrow-tag" style="margin-bottom:12px"><div class="eyebrow-tag-bar"></div><span>Common Questions</span></div>
       <h1 style="font-family:var(--raleway);font-weight:900;font-size:clamp(2rem,5vw,4rem);text-transform:uppercase;letter-spacing:-2px;color:#fff;line-height:.95">FAQ</h1>
@@ -976,8 +1007,7 @@
   <section class="section">
     <div class="section-inner">
       <h2 class="section-heading" style="display:none">FAQ</h2>
-      <p class="section-sub">Answers to common questions about Details by Jazz mobile detailing on Oahu.</p>
-      <div class="faq-list">
+      <div class="faq-list" style="margin-top:0">
         <div class="faq-row">
           <button class="faq-q" onclick="toggleFaq(this)">How much does mobile detailing cost?<div class="faq-icon">+</div></button>
           <div class="faq-a"><div class="faq-a-inner">Pricing depends on vehicle size, current condition, service level, and location. Basic details start around $150&ndash;$200, while premium services start around $225&ndash;$300. Text your vehicle and location for an accurate quote.</div></div>
@@ -1079,12 +1109,8 @@
         <div class="contact-left">
           <p>Send your vehicle, location, and desired service for availability and pricing. We typically respond same day.</p>
           <div class="contact-items">
-            <a href="sms:8083843052" class="contact-item">
-              <div class="contact-item-label">Text</div>
-              <div class="contact-item-val" style="font-family:var(--cond);font-weight:700;letter-spacing:1px;font-size:1rem">808-384-3052</div>
-            </a>
             <a href="tel:8083843052" class="contact-item">
-              <div class="contact-item-label">Phone</div>
+              <div class="contact-item-label">Call / Text</div>
               <div class="contact-item-val" style="font-family:var(--cond);font-weight:700;letter-spacing:1px;font-size:1rem">808-384-3052</div>
             </a>
             <a href="https://www.instagram.com/detailsbyjazz/" target="_blank" class="contact-item">
@@ -1230,14 +1256,18 @@
     resetTimer();
   }
   function moveSlide(dir){ goSlide(cur + dir); }
-  function resetTimer(){ clearInterval(sliderTimer); sliderTimer = setInterval(()=>goSlide(cur+1), 5000); }
+  function resetTimer(){
+    if(window.innerWidth > 880) return; // static on desktop
+    clearInterval(sliderTimer);
+    sliderTimer = setInterval(()=>goSlide(cur+1), 5000);
+  }
   resetTimer();
 
   /* TOUCH SWIPE on hero */
   (function(){
     const hero = document.querySelector('.hero');
     let tx = 0;
-    hero.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+    if(window.innerWidth <= 880) hero.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
     hero.addEventListener('touchend', e => {
       const dx = e.changedTouches[0].clientX - tx;
       if(Math.abs(dx) > 40) goSlide(dx < 0 ? cur+1 : cur-1);
@@ -1333,20 +1363,53 @@
   function buildGal(){
     if(galBuilt) return; galBuilt = true;
     const g = document.getElementById('galGrid');
+
+    // Render all items immediately but use data-src for deferred loading
     GALLERY.forEach((src,i)=>{
       const item = document.createElement('div');
       item.className = 'gal-item';
       item.onclick = ()=>openLb(i);
       const img = document.createElement('img');
-      img.src = 'Images/'+src;
       img.alt = GAL_ALTS[src]||'Mobile detailing Oahu';
-      img.loading = 'lazy'; img.decoding = 'async'; img.fetchpriority = 'low';
+      img.decoding = 'async';
+
+      if(i < 9){
+        // First 9 load immediately — visible on arrival
+        img.src = 'Images/'+src;
+        img.loading = i < 3 ? 'eager' : 'lazy';
+      } else {
+        // Rest use IntersectionObserver — only load when scrolled near
+        img.dataset.src = 'Images/'+src;
+        img.loading = 'lazy';
+        img.style.backgroundColor = '#0a0f16'; // placeholder colour
+      }
+
       const ov = document.createElement('div');
       ov.className = 'gal-ov';
       ov.innerHTML = '<span>View</span>';
       item.appendChild(img); item.appendChild(ov);
       g.appendChild(item);
     });
+
+    // IntersectionObserver fires images into view as user scrolls
+    if('IntersectionObserver' in window){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            const img = entry.target;
+            if(img.dataset.src){
+              img.src = img.dataset.src;
+              delete img.dataset.src;
+              io.unobserve(img);
+            }
+          }
+        });
+      },{rootMargin:'200px'}); // start loading 200px before visible
+      g.querySelectorAll('img[data-src]').forEach(img=>io.observe(img));
+    } else {
+      // Fallback for old browsers
+      g.querySelectorAll('img[data-src]').forEach(img=>{img.src=img.dataset.src;});
+    }
   }
 
   let lbCur = 0;
