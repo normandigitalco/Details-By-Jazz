@@ -97,7 +97,7 @@
     .mob-menu .mob-book:hover{background:var(--blue2)!important}
 
     /* ══════════ HERO SLIDER ══════════ */
-    .hero{position:relative;height:82vh;min-height:560px;overflow:hidden;margin-top:var(--nav-h);background:#0a0a0a;contain:layout paint}
+    .hero{position:relative;height:calc(100vh - var(--nav-h));min-height:500px;overflow:hidden;margin-top:var(--nav-h);background:#0a0a0a;contain:layout paint}
     .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;will-change:opacity}
     .slide.active{opacity:1}
     #s0{opacity:1;transition:none}
@@ -290,7 +290,7 @@
 
     /* ══════════ RESPONSIVE ══════════ */
     @media(min-width:881px){
-      .hero{height:91vh}
+      .hero{height:calc(100vh - var(--nav-h))}
     }
         @media(max-width:880px){
       footer > div{padding-left:20px!important;padding-right:20px!important} footer > div:first-child{grid-template-columns:1fr!important;gap:28px!important}
@@ -299,7 +299,7 @@
       .nav-book{display:none}
       .ham{display:flex}
       .hero-content{padding:0 24px 56px}
-      .hero{height:92vh;min-height:560px}
+      .hero{height:calc(100vh - var(--nav-h));min-height:500px}
       .hero-title{font-size:clamp(36px,11vw,72px)}
       .hero-dots{right:24px}
       .strip{grid-template-columns:1fr 1fr;height:auto}.pillar{height:200px}
@@ -1255,6 +1255,9 @@
     sliderTimer = setInterval(()=>goSlide(cur+1), 5000);
   }
 
+  /* Disable browser scroll restoration so it never fights our scrollTo(0,0) */
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
   /* PAGE NAVIGATION */
   let _currentPage = null;
 
@@ -1285,15 +1288,23 @@
     _currentPage = id;
     if(id === 'gallery') buildGal();
 
-    // Wait frames for browser to fully paint display:block before fading in
-    const frames = id === 'gallery' ? 8 : 3;
+    // Force a real layout flush — this makes iOS commit the display:block
+    // and scroll position before we start the opacity transition.
+    // Without this, iOS restores the old scroll position AFTER our fade-in
+    // causing the black screen. Reading offsetHeight forces a synchronous layout.
+    void t.offsetHeight;
+    void document.body.offsetHeight;
+    window.scrollTo(0, 0);
+
+    const frames = id === 'gallery' ? 8 : 4;
     let f = 0;
     function waitFrames() {
       if(++f < frames) {
         requestAnimationFrame(waitFrames);
       } else {
+        // One final scroll reset right before showing, after all frames
+        window.scrollTo(0, 0);
         t.classList.add('visible');
-        // Unlock scroll AFTER page is visible
         document.body.style.overflow = '';
         updateFloat();
       }
