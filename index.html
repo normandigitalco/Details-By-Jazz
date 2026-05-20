@@ -445,7 +445,7 @@
         <a href="javascript:void(0)" onclick="showPage('services')" class="btn-dark">See Full Pricing</a>
       </div>
       <div class="services-grid">
-        <div class="svc-card" onclick="showPage('contact')">
+        <div class="svc-card">
           <h3>Basic Inside &amp; Out</h3>
           <p>A thorough maintenance detail to keep your vehicle consistently clean inside and out.</p>
           <ul>
@@ -458,7 +458,7 @@
           <div class="svc-price">$150&ndash;$200 <span>starting price</span></div>
           <a href="javascript:void(0)" onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
-        <div class="svc-card featured-svc" onclick="showPage('contact')">
+        <div class="svc-card featured-svc">
           <div class="svc-badge">Most Popular</div>
           <h3>Premium Inside &amp; Out</h3>
           <p>A deeper reset for vehicles that need more thorough attention to every surface.</p>
@@ -472,7 +472,7 @@
           <div class="svc-price">$225&ndash;$300 <span>starting price</span></div>
           <a href="javascript:void(0)" onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
-        <div class="svc-card" onclick="showPage('contact')">
+        <div class="svc-card">
           <h3>Monthly Maintenance</h3>
           <p>Recurring detailing for clients who want their vehicle kept consistently clean.</p>
           <ul>
@@ -639,7 +639,7 @@
       </div>
 
       <div class="services-grid">
-        <div class="svc-card" onclick="showPage('contact')">
+        <div class="svc-card">
           <h3>Basic Inside &amp; Out</h3>
           <p>A solid maintenance detail for vehicles that need a clean refresh inside and out.</p>
           <ul>
@@ -651,8 +651,9 @@
             <li>Exterior paint sealant</li>
           </ul>
           <div class="svc-price">$150&ndash;$200+ <span>based on size &amp; condition</span></div>
+          <a href="javascript:void(0)" onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
-        <div class="svc-card featured-svc" onclick="showPage('contact')">
+        <div class="svc-card featured-svc">
           <div class="svc-badge">Most Popular</div>
           <h3>Premium Inside &amp; Out</h3>
           <p>A deeper detail for vehicles that need more thorough interior and exterior care.</p>
@@ -665,8 +666,9 @@
             <li>Ceramic paint sealant</li>
           </ul>
           <div class="svc-price">$225&ndash;$300+ <span>based on size &amp; condition</span></div>
+          <a href="javascript:void(0)" onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
-        <div class="svc-card" onclick="showPage('contact')">
+        <div class="svc-card">
           <h3>Monthly Maintenance</h3>
           <p>Recurring mobile detailing for clients who want their vehicle consistently maintained.</p>
           <ul>
@@ -677,6 +679,7 @@
             <li>Priority scheduling</li>
           </ul>
           <div class="svc-price">Monthly Plans <span>contact for pricing</span></div>
+          <a href="javascript:void(0)" onclick="showPage('contact')" class="svc-book">Book This</a>
         </div>
       </div>
       <div style="margin-top:20px;background:var(--panel);padding:28px 32px;border:1px solid var(--line);border-radius:var(--radius)">
@@ -1212,6 +1215,7 @@
 <script>
   const PAGES = ['home','services','areas','tesla','faq','gallery','contact'];
 
+  let _currentPage = null;
   function showPage(id, fromPop) {
     PAGES.forEach(p => {
       const el = document.getElementById(p);
@@ -1221,7 +1225,14 @@
     t.classList.add('active');
     window.scrollTo(0,0);
     requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('visible')));
-    if(!fromPop){ try { history.pushState({page:id},'','#'+id); } catch(e) {} }
+    if(!fromPop){
+      try {
+        // Only push a new entry if navigating to a different page
+        if(id !== _currentPage) history.pushState({page:id},'','#'+id);
+        else history.replaceState({page:id},'','#'+id);
+      } catch(e) {}
+    }
+    _currentPage = id;
     if(id==='gallery') buildGal();
     updateFloat();
   }
