@@ -56,7 +56,7 @@
     }
     html{scroll-behavior:auto;overflow-x:hidden}
     body{background:var(--bg);color:var(--text);font-family:var(--body);font-weight:300;line-height:1.6;overflow-x:hidden;overflow-y:hidden}
-    button,a,[onclick]{touch-action:manipulation}
+    *{touch-action:manipulation}
     ::selection{background:var(--blue);color:#fff}
     ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px}
     a{color:inherit;text-decoration:none}
@@ -300,8 +300,9 @@
       .nav-links{display:none}
       .nav-book{display:none}
       .ham{display:flex}
-      .hero-content{padding:0 24px 56px}
-      .hero{height:calc(100vh - var(--nav-h));min-height:500px}
+      .hero-content{padding:0 24px 32px}
+      .hero{height:calc(100vh - var(--nav-h));min-height:480px}
+      .hero-btns a,.hero-btns button{min-width:unset;width:100%}
       .hero-title{font-size:clamp(36px,11vw,72px)}
       .hero-dots{right:24px}
       .strip{grid-template-columns:1fr 1fr;height:auto}.pillar{height:200px}
