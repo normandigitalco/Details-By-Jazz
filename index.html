@@ -12,11 +12,11 @@
   <meta property="og:url" content="https://detailsbyjazz.com/"/>
   <meta property="og:title" content="Details by Jazz | Mobile Detailing Oahu"/>
   <meta property="og:description" content="Professional mobile detailing for Oahu drivers. We come to you."/>
-  <meta property="og:image" content="https://normandigitalco.github.io/Details-By-Jazz/images/tesla-image.png"/>
+  <meta property="og:image" content="https://normandigitalco.github.io/Details-By-Jazz/images/tesla-image.webp"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:image" content="https://normandigitalco.github.io/Details-By-Jazz/images/tesla-image.png"/>
+  <meta name="twitter:image" content="https://normandigitalco.github.io/Details-By-Jazz/images/tesla-image.webp"/>
 
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"AutomotiveBusiness","name":"Details by Jazz","description":"Premium mobile auto detailing on Oahu serving Kapolei, Ewa Beach, Honolulu and surrounding areas.","url":"https://detailsbyjazz.com","telephone":"+18083843052","sameAs":["https://www.instagram.com/detailsbyjazz/"],"areaServed":[{"@type":"City","name":"Kapolei"},{"@type":"City","name":"Ewa Beach"},{"@type":"City","name":"Honolulu"},{"@type":"City","name":"Makakilo"},{"@type":"City","name":"Ko Olina"},{"@type":"City","name":"Waikiki"}],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Mobile Detailing Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Basic Inside & Out Detail"},"priceSpecification":{"@type":"PriceSpecification","minPrice":"150","priceCurrency":"USD"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Premium Inside & Out Detail"},"priceSpecification":{"@type":"PriceSpecification","minPrice":"225","priceCurrency":"USD"}}]}}
@@ -56,6 +56,7 @@
     }
     html{scroll-behavior:auto}
     body{background:var(--bg);color:var(--text);font-family:var(--body);font-weight:300;line-height:1.6;overflow-x:hidden}
+    a,button,[onclick]{touch-action:manipulation}
     ::selection{background:var(--blue);color:#fff}
     ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px}
     a{color:inherit;text-decoration:none}
@@ -109,6 +110,7 @@
     .hero-title{font-family:var(--raleway);font-weight:900;font-size:clamp(44px,8vw,110px);line-height:.9;color:#fff;text-transform:uppercase;letter-spacing:-2px;margin-bottom:24px}
     .hero-sub{font-family:var(--cond);font-weight:400;font-size:14px;letter-spacing:3px;color:rgba(255,255,255,0.5);margin-bottom:36px;text-transform:uppercase;max-width:480px}
     .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-btns a,.hero-btns button{min-width:200px;text-align:center;justify-content:center}
     .btn-blue{font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;padding:15px 40px;background:var(--blue);color:#fff;border:none;transition:background .2s;white-space:nowrap;display:inline-block;border-radius:999px}
     .btn-blue:hover{background:var(--blue2)}
     .btn-ghost{font-family:var(--cond);font-weight:700;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;padding:15px 40px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.35);transition:border-color .25s;white-space:nowrap;display:inline-block;border-radius:999px}
@@ -135,8 +137,8 @@
     .strip{display:grid;grid-template-columns:repeat(4,1fr);height:400px}
     .pillar{position:relative;overflow:hidden}
     .pillar-bg{position:absolute;inset:0}
-    .pillar-bg img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;filter:brightness(0.38)}
-    .pillar:hover .pillar-bg img{transform:scale(1.07);filter:brightness(0.52)}
+    .pillar-bg img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;filter:brightness(0.55)}
+    .pillar:hover .pillar-bg img{transform:scale(1.07);filter:brightness(0.7)}
     .pillar-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.1) 60%,transparent 100%)}
     .pillar-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px 24px;z-index:2}
     .pillar-tag{font-family:var(--raleway);font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:8px}
@@ -291,6 +293,7 @@
       .nav-book{display:none}
       .ham{display:flex}
       .hero-content{padding:0 24px 56px}
+      .hero{height:92svh}
       .hero-title{font-size:clamp(36px,11vw,72px)}
       .hero-dots{right:24px}
       .strip{grid-template-columns:1fr 1fr;height:auto}.pillar{height:200px}
@@ -364,16 +367,16 @@
   <!-- HERO SLIDER -->
   <section class="hero">
     <div class="slide active" id="s0">
-      <img src="Images/tesla-image.png" alt="Tesla mobile detailing Oahu Hawaii" style="object-position:center 50%"/>
+      <img src="Images/tesla-image.webp" alt="Tesla mobile detailing Oahu Hawaii" style="object-position:center 50%" fetchpriority="high" decoding="sync"/>
     </div>
     <div class="slide" id="s1">
-      <img src="Images/IMG_4458.JPEG" alt="White Tesla Model Y mobile detailing Kapolei driveway Oahu" style="object-position:center 55%"/>
+      <img src="Images/IMG_4458.JPEG" alt="White Tesla Model Y mobile detailing Kapolei driveway Oahu" style="object-position:center 55%" loading="lazy" decoding="async"/>
     </div>
     <div class="slide" id="s2">
-      <img src="Images/655056214_18074318903452042_2135691445387847298_n.jpg" alt="Teal Jeep Wrangler detail Oahu" style="object-position:center 45%"/>
+      <img src="Images/655056214_18074318903452042_2135691445387847298_n.jpg" alt="Teal Jeep Wrangler detail Oahu" style="object-position:center 45%" loading="lazy" decoding="async"/>
     </div>
     <div class="slide" id="s3">
-      <img src="Images/porsche.jpeg" alt="Black Porsche Taycan detail Oahu" style="object-position:center 77%"/>
+      <img src="Images/porsche.jpeg" alt="Black Porsche Taycan detail Oahu" style="object-position:center 77%" loading="lazy" decoding="async"/>
     </div>
 
     <button class="h-arr pv" onclick="moveSlide(-1)">&#8249;</button>
@@ -1218,7 +1221,7 @@
     t.classList.add('active');
     window.scrollTo(0,0);
     requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('visible')));
-    history.replaceState(null,'','#'+id);
+    try { history.pushState(null,'','#'+id); } catch(e) {}
     if(id==='gallery') buildGal();
     updateFloat();
   }
@@ -1441,6 +1444,13 @@
     floatBtn.classList.toggle('show', window.scrollY > 400 && !onContact);
   }
   window.addEventListener('scroll', updateFloat, {passive:true});
+
+  // Handle browser back/forward buttons
+  window.addEventListener('popstate', function(){
+    const hash = location.hash.replace('#','');
+    if(PAGES.includes(hash)) showPage(hash);
+    else showPage('home');
+  });
 </script>
 </body>
 </html>
