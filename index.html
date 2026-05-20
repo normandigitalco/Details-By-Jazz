@@ -1215,8 +1215,16 @@
 <script>
   const PAGES = ['home','services','areas','tesla','faq','gallery','contact'];
 
+  const floatBtn = document.getElementById('floatBtn');
+  function updateFloat(){
+    const onContact = document.getElementById('contact').classList.contains('active');
+    floatBtn.classList.toggle('show', window.scrollY > 400 && !onContact);
+  }
+  window.addEventListener('scroll', updateFloat, {passive:true});
+
   let _currentPage = null;
   function showPage(id, fromPop) {
+    if(!PAGES.includes(id)) id = 'home';
     PAGES.forEach(p => {
       const el = document.getElementById(p);
       el.classList.remove('active','visible');
@@ -1224,10 +1232,19 @@
     const t = document.getElementById(id);
     t.classList.add('active');
     window.scrollTo(0,0);
-    requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('visible')));
+
+    if(fromPop){
+      // On back/forward navigation — skip animation, show instantly
+      // Force a repaint so iOS doesn't get stuck on blank
+      void t.offsetHeight;
+      t.classList.add('visible');
+    } else {
+      // Normal navigation — smooth fade in
+      requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('visible')));
+    }
+
     if(!fromPop){
       try {
-        // Only push a new entry if navigating to a different page
         if(id !== _currentPage) history.pushState({page:id},'','#'+id);
         else history.replaceState({page:id},'','#'+id);
       } catch(e) {}
@@ -1239,8 +1256,11 @@
 
   (function(){
     const h = location.hash.replace('#','');
-    if(PAGES.includes(h)){showPage(h);}
-    else{document.getElementById('home').classList.add('visible');}
+    const startPage = PAGES.includes(h) ? h : 'home';
+    try { history.replaceState({page:startPage},'','#'+startPage); } catch(e) {}
+    showPage(startPage, true);
+    _currentPage = startPage;
+    if(startPage === 'home') resetTimer();
   })();
 
   function toggleMenu(){
@@ -1449,12 +1469,7 @@
       .catch(()=>{btn.textContent='Error — Try Again';btn.disabled=false;});
   }
 
-  const floatBtn = document.getElementById('floatBtn');
-  function updateFloat(){
-    const onContact = document.getElementById('contact').classList.contains('active');
-    floatBtn.classList.toggle('show', window.scrollY > 400 && !onContact);
-  }
-  window.addEventListener('scroll', updateFloat, {passive:true});
+
 
   // Handle browser back/forward buttons
   window.addEventListener('popstate', function(e){
