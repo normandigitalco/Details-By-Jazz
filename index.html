@@ -350,6 +350,8 @@
       .hero-btns a,.hero-btns button{padding:10px 20px}
     }
   </style>
+  <!-- Prevent browser from scrolling to #hash on load — must be in <head> to fire first -->
+  <script>if('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
 </head>
 <body>
 
@@ -1311,7 +1313,8 @@
 
     if(!fromPop) {
       try {
-        if(id !== _currentPage) history.pushState({page:id}, '', '#'+id);
+        if(id === 'home') history.pushState({page:'home'}, '', location.pathname);
+        else if(id !== _currentPage) history.pushState({page:id}, '', '#'+id);
         else history.replaceState({page:id}, '', '#'+id);
       } catch(e) {}
     }
@@ -1342,7 +1345,18 @@
   (function(){
     const h = location.hash.replace('#', '');
     const startPage = PAGES.includes(h) ? h : 'home';
-    try { history.replaceState({page:startPage}, '', '#'+startPage); } catch(e) {}
+
+    // For home, remove the hash from URL entirely — #home causes the browser
+    // to scroll to the #home div on load, which is why the page appears scrolled down.
+    // Other pages keep their hash for back/forward navigation.
+    try {
+      if(startPage === 'home') history.replaceState({page:'home'}, '', location.pathname);
+      else history.replaceState({page:startPage}, '', '#'+startPage);
+    } catch(e) {}
+
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 
     document.getElementById('home').classList.add('active', 'visible');
     _currentPage = 'home';
